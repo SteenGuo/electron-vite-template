@@ -1,0 +1,49 @@
+{
+  "name": "electron-vite-template",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "dist/main/index.cjs",
+  "scripts": {
+    "dev": "node scripts/dev-runner.js",
+    "build:staging": "rm -rf dist && cross-env MODE=staging npm run pack && electron-builder build --config .electron-builder.config.js",
+    "build:prod": "rm -rf dist && cross-env MODE=production npm run pack && electron-builder build --config .electron-builder.config.js",
+    "pack": "npm run pack:main && npm run pack:preload && npm run pack:renderer",
+    "pack:main": "vite build --config src/main/vite.config.js",
+    "pack:preload": "vite build --config src/preload/vite.config.js",
+    "pack:renderer": "vite build --config src/renderer/vite.config.js",
+    "clean": "node scripts/clean.js"
+  },
+  "dependencies": {
+    "element-plus": "^2.1.7",
+    "pinia": "^2.0.11",
+    "vue": "^3.2.31",
+    "vue-router": "^4.0.12"
+  },
+  "devDependencies": {
+    "@rushstack/eslint-patch": "^1.1.0",
+    "@types/node": "^16.11.25",
+    "@vitejs/plugin-vue": "^2.2.2",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "@vue/eslint-config-typescript": "^10.0.0",
+    "@vue/tsconfig": "^0.1.3",
+    "cross-env": "^7.0.3",
+    "electron": "^17.1.2",
+    "electron-builder": "^22.14.13",
+    "electron-devtools-installer": "^3.2.0",
+    "electron-updater": "^4.6.5",
+    "eslint": "^8.5.0",
+    "eslint-plugin-vue": "^8.2.0",
+    "prettier": "^2.5.1",
+    "sass": "^1.49.9",
+    "typescript": "~4.5.5",
+    "unplugin-auto-import": "^0.6.6",
+    "unplugin-vue-components": "^0.18.5",
+    "vite": "^2.8.4",
+    "vue-i18n": "^9.1.9",
+    "vue-tsc": "^0.31.4"
+  },
+  "engines": {
+    "node": ">=v16.13",
+    "npm": ">=8.1"
+  }
+}
